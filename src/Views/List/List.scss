@@ -1,0 +1,42 @@
+#main-view-container {
+  display: flex;
+  height: 100%;
+  #side-bar {
+    position: absolute;
+    width: 300px;
+    height: calc(100vh - 60px);
+  }
+}
+
+#mobile-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  opacity: 0;
+}
+
+#list-view {
+  height: calc(100vh - 90px);
+  width: calc(100vw - 330px);
+  right: 0;
+  position: absolute;
+  overflow: auto;
+  top: 60px;
+  z-index: 100;
+}
+
+@media only screen and (max-width: 700px) {
+  #side-bar {
+    left: -300px !important;
+  }
+  #mobile-footer {
+    opacity: 1 !important;
+  }
+  #list-view {
+    height: calc(100vh - 130px) !important;
+    width: calc(100vw - 30px) !important;
+    z-index: 0 !important;
+  }
+}

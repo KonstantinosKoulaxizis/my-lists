@@ -1,5 +1,7 @@
+import './SideBar.scss'
+
 const SideBar = () => {
-  return <div>SideBar</div>
+  return <div id="side-bar-container">SideBar</div>
 }
 
 export default SideBar

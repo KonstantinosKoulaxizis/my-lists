@@ -1,6 +1,9 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
 
+import TopBar from '../Components/TopBar'
+
 import Landing from '../Views/Landing'
+import List from '../Views/List'
 import NoMatch from '../Views/NoMatch'
 
 export default function AppRouter() {
@@ -9,6 +12,7 @@ export default function AppRouter() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
+          <Route path="list" element={<List />} />
         </Route>
         <Route path="no_mach" element={<NoMatch />} />
         <Route path="*" element={<NoMatch />} />
@@ -20,6 +24,7 @@ export default function AppRouter() {
 const Layout = () => {
   return (
     <div>
+      <TopBar />
       <Outlet />
     </div>
   )

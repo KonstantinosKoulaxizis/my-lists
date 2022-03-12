@@ -1,5 +1,7 @@
+import './BottomBar.scss'
+
 const BottomBar = () => {
-  return <div>BottomBar</div>
+  return <div id="bottom-bar-container">BottomBar</div>
 }
 
 export default BottomBar
