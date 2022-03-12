@@ -1,5 +1,6 @@
-import SideBar from '../../Components/SideBar'
-import BottomBar from '../../Components/BottomBar'
+import LoadedLists from './LoadedList'
+import SideBar from './SideBar'
+import BottomBar from './BottomBar'
 
 import './List.scss'
 
@@ -11,7 +12,9 @@ const List = () => {
           <SideBar />
         </div>
 
-        <div id="list-view">Lists</div>
+        <div id="list-view">
+          <LoadedLists />
+        </div>
       </div>
       <div id="mobile-footer">
         <BottomBar />

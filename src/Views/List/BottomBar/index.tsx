@@ -1,4 +1,4 @@
-import CreateNewButton from '../CreateNewButton'
+import CreateNewButton from '../../../Components/CreateNewButton'
 
 import './BottomBar.scss'
 
