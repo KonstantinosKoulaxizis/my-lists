@@ -3,10 +3,10 @@ import ListTileModel from '../../Models/ListTileModel'
 
 import ListTile from '../ListTile'
 
-const UserLists: FunctionComponent<ListTileModel[]> = (userList: ListTileModel[]) => {
+const UserLists: FunctionComponent<{ userLists: ListTileModel[] }> = ({ userLists }) => {
   return (
-    <ul>
-      {userList.map(listItem => (
+    <ul id="side-bar-list">
+      {userLists.map(listItem => (
         <ListTile
           _id={listItem._id}
           name={listItem.name}
@@ -14,7 +14,6 @@ const UserLists: FunctionComponent<ListTileModel[]> = (userList: ListTileModel[]
           updated_at={listItem.updated_at}
         />
       ))}
-      <li>test 1</li>
     </ul>
   )
 }

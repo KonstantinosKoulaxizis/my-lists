@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 import appReducer from './Reducers/AppReducer'
+import userListsReducer from './Reducers/UserListsReducer'
 
 const rootReducer = combineReducers({
-  app: appReducer
+  app: appReducer,
+  lists: userListsReducer
 })
 
 const configureStore = () => createStore(rootReducer)

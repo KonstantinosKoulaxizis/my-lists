@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 0 10px;
+  overflow: hidden;
 
   #buttons-container {
     display: flex;
@@ -12,7 +13,13 @@
     justify-content: space-evenly;
 
     button {
-        width: 120px;
+      width: 120px;
     }
+  }
+
+  #side-bar-list {
+    overflow: auto;
+    border: 1px solid #000;
+    border-radius: 6px;
   }
 }

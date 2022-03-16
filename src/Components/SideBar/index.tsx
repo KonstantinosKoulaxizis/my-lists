@@ -1,5 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
+
 import { ListRequests } from '../../Utils/ListRequests'
+import { useReduxSelector, useReduxDispatch } from '../../Store/ReduxHooks'
+import ListTileModel from '../../Models/ListTileModel'
+import { setUrerLists } from '../../Store/Actions/ListActions'
 
 import CreateNewButton from '../CreateNewButton'
 import UserLists from './UserLists'
@@ -7,14 +11,25 @@ import UserLists from './UserLists'
 import './SideBar.scss'
 
 const SideBar = () => {
-  const handleGetALlLists = async () => {
+  const dispatch = useReduxDispatch()
+  const setLists = useCallback(value => dispatch(setUrerLists(value)), [dispatch])
+  const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
+
+  const handleGetALlLists = useCallback(async () => {
     const lists = await ListRequests.getAllLists()
-    console.log('🚀 ~ file: index.tsx ~ line 12 ~ handleGetALlLists ~ lists', lists)
-  }
+    setLists([
+      ...lists.data,
+      ...lists.data,
+      ...lists.data,
+      ...lists.data,
+      ...lists.data,
+      ...lists.data
+    ])
+  }, [setLists])
 
   useEffect(() => {
     handleGetALlLists()
-  }, [])
+  }, [handleGetALlLists])
   return (
     <div id="side-bar-container">
       <div id="buttons-container">
@@ -23,7 +38,7 @@ const SideBar = () => {
       </div>
       <br />
       Search <br />
-      <UserLists />
+      <UserLists userLists={userLists} />
     </div>
   )
 }
