@@ -1,5 +1,5 @@
 import LoadedLists from './LoadedList'
-import SideBar from './SideBar'
+import SideBar from '../../Components/SideBar'
 import BottomBar from './BottomBar'
 
 import './List.scss'

@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import { ListRequests } from '../../../Utils/ListRequests'
+import { ListRequests } from '../../Utils/ListRequests'
 
-import CreateNewButton from '../../../Components/CreateNewButton'
+import CreateNewButton from '../CreateNewButton'
+import UserLists from './UserLists'
 
 import './SideBar.scss'
 
@@ -22,9 +23,7 @@ const SideBar = () => {
       </div>
       <br />
       Search <br />
-      ===== <br />
-      result <br />
-      ===== <br />
+      <UserLists />
     </div>
   )
 }
