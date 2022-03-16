@@ -13,6 +13,8 @@ export default function AppRouter() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
           <Route path="list" element={<List />} />
+          <Route path="list/:id" element={<List />} />
+          <Route path="list/:id/:task" element={<List />} />
         </Route>
         <Route path="no_mach" element={<NoMatch />} />
         <Route path="*" element={<NoMatch />} />
