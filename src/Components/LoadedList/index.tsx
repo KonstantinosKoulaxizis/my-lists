@@ -21,10 +21,10 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
     }
 
     useEffect(() => {
-      if (id && (id !== selectedList?.id?.toString() || !selectedList?.id)) {
+      if (id) {
         getListAction(id)
       }
-    }, [getListAction, id, selectedList?.id])
+    }, [getListAction, id])
 
     return (
       <div>

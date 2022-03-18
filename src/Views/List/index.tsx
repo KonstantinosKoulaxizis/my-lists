@@ -23,6 +23,9 @@ const List = () => {
   const selectedList: SelectedListModel = useReduxSelector(state => state.lists.selectedList)
 
   const handleGetList = async (listId: string) => {
+    if (id === selectedList?.id?.toString()) {
+      return
+    }
     const found = userLists.find(l => l.id === listId)
 
     if (found) {
