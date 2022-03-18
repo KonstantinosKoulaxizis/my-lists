@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react'
 
 import { ListRequests } from '../../Utils/ListRequests'
-import { useReduxSelector, useReduxDispatch } from '../../Store/ReduxHooks'
+import { useReduxSelector, useReduxDispatch } from '../../Utils/ReduxHooks'
 import ListTileModel from '../../Models/ListTileModel'
 import { setUrerLists } from '../../Store/Actions/ListActions'
 

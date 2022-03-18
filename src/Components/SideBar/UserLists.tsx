@@ -11,6 +11,7 @@ const UserLists: FunctionComponent<{ userLists: ListTileModel[] }> = ({ userList
   const handleNavigateToList = (id: string) => {
     navigate(`../list/${id}`)
   }
+
   return (
     <ul id="side-bar-list">
       {userLists.map(listItem => (
