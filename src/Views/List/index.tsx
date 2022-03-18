@@ -8,13 +8,15 @@ import { setSelectedList } from '../../Store/Actions/ListActions'
 import { ListRequests } from '../../Utils/ListRequests'
 
 import LoadedList from '../../Components/LoadedList'
+import TaskModal from '../../Components/TaskModal'
 import SideBar from '../../Components/SideBar'
 import BottomBar from './BottomBar'
 
 import './List.scss'
 
 const List = () => {
-  const { id } = useParams()
+  const { id, task } = useParams()
+  console.log('🚀 ~ file: index.tsx ~ line 19 ~ List ~ task', task)
   const dispatch = useReduxDispatch()
   const _setSelectedList = useCallback(selected => dispatch(setSelectedList(selected)), [dispatch])
   const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
@@ -52,6 +54,10 @@ const List = () => {
 
         <div id="list-view">
           <LoadedList selectedList={selectedList} />
+        </div>
+
+        <div id="task-modal" className={!!task ? 'active-task-modal' : 'hidden-task-modal'}>
+          <TaskModal />
         </div>
       </div>
       <div id="mobile-footer">

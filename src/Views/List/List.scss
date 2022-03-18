@@ -6,6 +6,13 @@
     width: 300px;
     height: calc(100vh - 50px);
   }
+
+  #task-modal {
+    position: absolute;
+    height: calc(100vh - 50px);
+    width: 400px;
+    right: 0;
+  }
 }
 
 #mobile-footer {
@@ -30,16 +37,44 @@
   }
 }
 
+.active-task-modal {
+  z-index: 100;
+  background-color: #fff;
+  border-left: 2px solid #318ed5;
+  box-shadow: 2px 16px 12px 12px #318ed5b1;
+  border-top-left-radius: 12px;
+}
+
+.hidden-task-modal {
+  z-index: 0 !important;
+  width: -400px !important;
+}
+
 @media only screen and (max-width: 700px) {
   #side-bar {
     left: -300px !important;
   }
+
   #mobile-footer {
     opacity: 1 !important;
   }
+
   #list-view {
-    height: calc(100vh - 130px) !important;
     width: 100vw !important;
     z-index: 0 !important;
+  }
+
+  .active-task-modal {
+    width: 100% !important;
+    box-shadow: 0px 0px 0px 0px;
+  }
+
+  .hidden-task-modal {
+    left: -100vw !important;
+  }
+
+  #task-modal {
+    border-radius: 0;
+    height: calc(100vh - 100px) !important;
   }
 }
