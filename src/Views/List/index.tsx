@@ -1,10 +1,11 @@
-import { useEffect, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useReduxSelector, useReduxDispatch } from '../../Utils/ReduxHooks'
 import ListTileModel from '../../Models/ListTileModel'
 import SelectedListModel from '../../Models/SelectedListModel'
-import { setSelectedList } from '../../Store/Actions/ListActions'
+import SelectedTaskModel from '../../Models/SelectedTaskModel'
+import { setSelectedList, setSelectedTask } from '../../Store/Actions/ListActions'
 import { ListRequests } from '../../Utils/ListRequests'
 
 import LoadedList from '../../Components/LoadedList'
@@ -16,26 +17,36 @@ import './List.scss'
 
 const List = () => {
   const { id, task } = useParams()
-  console.log('🚀 ~ file: index.tsx ~ line 19 ~ List ~ task', task)
   const dispatch = useReduxDispatch()
   const _setSelectedList = useCallback(selected => dispatch(setSelectedList(selected)), [dispatch])
+  const _setSelectedTask = useCallback(selected => dispatch(setSelectedTask(selected)), [dispatch])
   const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
   const selectedList: SelectedListModel = useReduxSelector(state => state.lists.selectedList)
+  const selectedTask: SelectedTaskModel = useReduxSelector(state => state.lists.selectedTask)
+
+  // TODO remove to string
 
   const handleGetList = async (listId: string) => {
-    if (id === selectedList?.id?.toString()) {
+    if (!id || id === selectedList?.id?.toString()) {
       return
     }
-    const found = userLists.find(l => l.id === listId)
 
-    if (found) {
-      _setSelectedList(found)
-      return
-    }
     const fetchedList = await ListRequests.getList(listId)
 
     if (fetchedList?.data) {
       _setSelectedList(fetchedList.data)
+    }
+  }
+
+  const handleSelectTask = async (taskId: string) => {
+    if (!task || task === selectedTask?.id?.toString()) {
+      return
+    }
+    const found = selectedList?.items.find(t => t.id.toString() === taskId)
+
+    if (found) {
+      _setSelectedTask(found)
+      return
     }
   }
 
@@ -51,7 +62,12 @@ const List = () => {
         </div>
 
         <div id="task-modal" className={!!task ? 'active-task-modal' : 'hidden-task-modal'}>
-          {/* <TaskModal /> */}
+          <TaskModal
+            task={task}
+            list={id}
+            selectedTask={selectedTask}
+            getTaskAction={handleSelectTask}
+          />
         </div>
       </div>
       <div id="mobile-footer">

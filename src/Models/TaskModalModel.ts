@@ -1,10 +1,9 @@
+import SelectedTaskModel from './SelectedTaskModel'
 interface TaskModalModel {
-    id: string // TODO CHANGE IT WITH _id
-    name: string
-    navigationAction: (_id: string) => void
-    changeStatusAction: (_id: string, status: boolean) => void
-    completed: boolean
-  }
-  
-  export default TaskModalModel
-  
+  task: string | undefined
+  list: string | undefined
+  selectedTask: SelectedTaskModel
+  getTaskAction: (taskId: string) => void
+}
+
+export default TaskModalModel

@@ -35,16 +35,22 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
               <hr />
             </div>
             <div id="list-children">
-              {selectedList?.items.map(item => (
-                <ListItemTile
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  navigationAction={handleNavigateToList}
-                  changeStatusAction={handleUpdateTaskStatus}
-                  completed={item.completed}
-                />
-              ))}
+              {selectedList?.items?.length > 0 ? (
+                <>
+                  {selectedList.items.map(item => (
+                    <ListItemTile
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      navigationAction={handleNavigateToList}
+                      changeStatusAction={handleUpdateTaskStatus}
+                      completed={item.completed}
+                    />
+                  ))}
+                </>
+              ) : (
+                <h1>No items</h1>
+              )}
             </div>
           </div>
         ) : (

@@ -1,9 +1,9 @@
-import { USERS_LIST, FILTER_RESULT, SELECTED_LIST } from '../Actions/ActionTypes'
+import { USERS_LIST, SELECTED_LIST, SELECTED_TASK } from '../Actions/ActionTypes'
 
 const initialState = {
   userList: [],
-  filterResult: [],
-  selectedList: {}
+  selectedList: {},
+  selectedTask: {}
 }
 
 const userListsReducer = (state = initialState, action: any) => {
@@ -13,15 +13,15 @@ const userListsReducer = (state = initialState, action: any) => {
         ...state,
         userList: action.payload
       }
-    case FILTER_RESULT:
-      return {
-        ...state,
-        filterResult: action.payload
-      }
     case SELECTED_LIST:
       return {
         ...state,
         selectedList: action.payload
+      }
+    case SELECTED_TASK:
+      return {
+        ...state,
+        selectedTask: action.payload
       }
     default:
       return state

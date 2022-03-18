@@ -8,6 +8,9 @@ export const ListRequests = (() => {
     },
     getList: async (id: string) => {
       return await RequestFunction(`list/${id}`, GET_METHOD)
+    },
+    getTask: async (list: string, task: string) => {
+      return await RequestFunction(`list/${list}/${task}`, GET_METHOD)
     }
   }
 })()
