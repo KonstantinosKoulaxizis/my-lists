@@ -1,0 +1,14 @@
+.list-item-tile {
+  background: linear-gradient(-45deg, rgba(51, 142, 213, 0.22), rgba(255, 255, 255, 0.25));
+  border: 2px solid #338ed5;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.list-item-tile:hover {
+  background: rgba(51, 142, 213, 0.22);
+  border-width: 3px;
+  box-shadow: 1px 1px 3px 2px #318ed5b1;
+}

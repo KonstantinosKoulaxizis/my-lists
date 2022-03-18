@@ -4,7 +4,7 @@
   #side-bar {
     position: absolute;
     width: 300px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 50px);
   }
 }
 
@@ -18,13 +18,16 @@
 }
 
 #list-view {
-  height: calc(100vh - 90px);
-  width: calc(100vw - 330px);
+  height: calc(100vh - 70px);
+  width: calc(100vw - 300px);
   right: 0;
   position: absolute;
   overflow: auto;
   top: 60px;
   z-index: 100;
+  div {
+    padding: 0 10px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -36,7 +39,7 @@
   }
   #list-view {
     height: calc(100vh - 130px) !important;
-    width: calc(100vw - 30px) !important;
+    width: 100vw !important;
     z-index: 0 !important;
   }
 }
