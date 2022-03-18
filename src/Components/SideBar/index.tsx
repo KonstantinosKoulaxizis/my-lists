@@ -17,19 +17,13 @@ const SideBar = () => {
 
   const handleGetALlLists = useCallback(async () => {
     const lists = await ListRequests.getAllLists()
-    _setUrerLists([
-      ...lists.data,
-      ...lists.data,
-      ...lists.data,
-      ...lists.data,
-      ...lists.data,
-      ...lists.data
-    ])
+    _setUrerLists(lists.data)
   }, [_setUrerLists])
 
   useEffect(() => {
     handleGetALlLists()
   }, [handleGetALlLists])
+
   return (
     <div id="side-bar-container">
       <div id="buttons-container">

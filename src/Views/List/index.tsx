@@ -22,28 +22,19 @@ const List = () => {
   const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
   const selectedList: SelectedListModel = useReduxSelector(state => state.lists.selectedList)
 
-  const handleGetList = useCallback(
-    async (listId: string) => {
-      const found = userLists.find(l => l.id === listId)
+  const handleGetList = async (listId: string) => {
+    const found = userLists.find(l => l.id === listId)
 
-      if (found) {
-        _setSelectedList(found)
-        return
-      }
-      const fetchedList = await ListRequests.getList(listId)
-
-      if (fetchedList?.data) {
-        _setSelectedList(fetchedList.data)
-      }
-    },
-    [_setSelectedList, userLists]
-  )
-
-  useEffect(() => {
-    if (id && (id !== selectedList?.id?.toString() || !selectedList?.id)) {
-      handleGetList(id)
+    if (found) {
+      _setSelectedList(found)
+      return
     }
-  }, [handleGetList, id, selectedList?.id])
+    const fetchedList = await ListRequests.getList(listId)
+
+    if (fetchedList?.data) {
+      _setSelectedList(fetchedList.data)
+    }
+  }
 
   return (
     <>
@@ -53,11 +44,11 @@ const List = () => {
         </div>
 
         <div id="list-view">
-          <LoadedList selectedList={selectedList} />
+          <LoadedList selectedList={selectedList} id={id} getListAction={handleGetList} />
         </div>
 
         <div id="task-modal" className={!!task ? 'active-task-modal' : 'hidden-task-modal'}>
-          <TaskModal />
+          {/* <TaskModal /> */}
         </div>
       </div>
       <div id="mobile-footer">

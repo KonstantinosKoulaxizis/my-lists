@@ -16,6 +16,7 @@ const UserLists: FunctionComponent<{ userLists: ListTileModel[] }> = ({ userList
     <ul id="side-bar-list">
       {userLists.map(listItem => (
         <ListTile
+          key={listItem.id}
           id={listItem.id}
           name={listItem.name}
           created_at={listItem.created_at}
