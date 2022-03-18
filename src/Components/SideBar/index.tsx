@@ -12,12 +12,12 @@ import './SideBar.scss'
 
 const SideBar = () => {
   const dispatch = useReduxDispatch()
-  const setLists = useCallback(value => dispatch(setUrerLists(value)), [dispatch])
+  const _setUrerLists = useCallback(value => dispatch(setUrerLists(value)), [dispatch])
   const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
 
   const handleGetALlLists = useCallback(async () => {
     const lists = await ListRequests.getAllLists()
-    setLists([
+    _setUrerLists([
       ...lists.data,
       ...lists.data,
       ...lists.data,
@@ -25,7 +25,7 @@ const SideBar = () => {
       ...lists.data,
       ...lists.data
     ])
-  }, [setLists])
+  }, [_setUrerLists])
 
   useEffect(() => {
     handleGetALlLists()
