@@ -3,7 +3,7 @@ interface SelectedListModel {
   name: string
   created_at: string
   updated_at: string
-  action: (_id: string) => void
+  navigationAction: (_id: string) => void
   items: any[] //TODO CHANGE WITH intercae
 }
 

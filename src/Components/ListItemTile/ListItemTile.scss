@@ -4,11 +4,55 @@
   border-radius: 8px;
   padding: 5px 10px;
   margin: 5px;
-  cursor: pointer;
+
+  .list-item-task {
+    display: flex;
+    align-items: baseline;
+
+    h4 {
+      cursor: pointer;
+      flex: 11;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .task-status {
+      border: 2px solid #318ed5;
+      padding: 8px !important;
+      border-radius: 8px;
+
+      input[type='checkbox'] {
+        transform: scale(1.7);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .list-item-date {
+    color: #757373;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    h6 {
+      margin: 4px 0;
+      display: list-item;
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+  }
 }
 
 .list-item-tile:hover {
+  background: rgba(51, 143, 213, 0.349);
+}
+
+.list-item-tile-edit {
   background: rgba(51, 142, 213, 0.22);
   border-width: 3px;
+  box-shadow: 1px 1px 3px 2px #318ed5b1;
+  cursor: pointer;
+}
+
+.task-status:hover {
   box-shadow: 1px 1px 3px 2px #318ed5b1;
 }

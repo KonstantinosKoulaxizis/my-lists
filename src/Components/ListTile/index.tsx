@@ -1,5 +1,7 @@
 import { FunctionComponent } from 'react'
+
 import ListTileModel from '../../Models/ListTileModel'
+import { GeneralUtils } from '../../Utils/GeneralUtils'
 
 import './ListTile.scss'
 
@@ -8,13 +10,16 @@ const ListTile: FunctionComponent<ListTileModel> = ({
   name,
   created_at,
   updated_at,
-  action
+  navigationAction
 }) => {
   return (
-    <div className="list-tile" onClick={() => action(id)}>
+    <div className="list-tile" onClick={() => navigationAction(id)}>
       <h4>{name}</h4>
-      <h6>Created at: {created_at}</h6>
-      <h6>last update: {updated_at}</h6>
+      <hr />
+      <div className="list-tile-date">
+        <h6>Created at: {GeneralUtils.getFromNow(created_at)}</h6>
+        <h6>last update: {GeneralUtils.getFromNow(updated_at)}</h6>
+      </div>
     </div>
   )
 }

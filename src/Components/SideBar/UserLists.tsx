@@ -20,7 +20,7 @@ const UserLists: FunctionComponent<{ userLists: ListTileModel[] }> = ({ userList
           name={listItem.name}
           created_at={listItem.created_at}
           updated_at={listItem.updated_at}
-          action={handleNavigateToList}
+          navigationAction={handleNavigateToList}
         />
       ))}
     </ul>

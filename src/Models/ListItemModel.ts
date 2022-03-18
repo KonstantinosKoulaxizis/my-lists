@@ -1,9 +1,8 @@
 interface ListItemModel {
   id: string // TODO CHANGE IT WITH _id
   name: string
-  created_at: string
-  updated_at: string
-  action: (_id: string) => void
+  navigationAction: (_id: string) => void
+  changeStatusAction: (_id: string, status: boolean) => void
   completed: boolean
 }
 

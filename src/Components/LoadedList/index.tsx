@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import LoadedListModel from '../../Models/LoadedListModel'
 import ListItemTile from '../ListItemTile'
@@ -6,6 +7,18 @@ import ListItemTile from '../ListItemTile'
 import './LoadedList.scss'
 
 const LoadedList: FunctionComponent<LoadedListModel> = React.memo(({ selectedList }) => {
+  const navigate = useNavigate()
+
+  const handleNavigateToList = (id: string) => {
+    if (!selectedList?.id) return
+
+    navigate(`../list/${selectedList.id}/${id}`)
+  }
+
+  const handleUpdateTaskStatus = (id: string, status: boolean) => {
+    console.log('id: ', id, 'status: ', status)
+  }
+
   return (
     <div>
       {selectedList?.id ? (
@@ -20,9 +33,8 @@ const LoadedList: FunctionComponent<LoadedListModel> = React.memo(({ selectedLis
                 key={item.id}
                 id={item.id}
                 name={item.name}
-                created_at={item.created_at}
-                updated_at={item.updated_at}
-                action={() => console.log('change')}
+                navigationAction={handleNavigateToList}
+                changeStatusAction={handleUpdateTaskStatus}
                 completed={item.completed}
               />
             ))}
