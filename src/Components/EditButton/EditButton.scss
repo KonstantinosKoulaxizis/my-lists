@@ -1,0 +1,37 @@
+.edit-button {
+  border: 0;
+  color: #fff !important;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.edit-button-round {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.edit-button-text {
+  padding: 7px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  width: 130px;
+}
+
+.edit-button-active {
+  background-color: #e64d5a;
+}
+
+.edit-button-active:hover {
+  background-color: #df6972;
+}
+
+.edit-button-inaactive {
+  background-color: #318ed5;
+}
+
+.edit-button-inaactive:hover {
+  background-color: #579bce;
+}

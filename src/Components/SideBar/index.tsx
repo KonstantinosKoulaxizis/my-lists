@@ -29,10 +29,7 @@ const SideBar = () => {
     <div id="side-bar-container">
       <div id="buttons-container">
         <CreateNewButton />
-        <button> edit button</button>
       </div>
-      <br />
-      Search <br />
       <UserLists userLists={userLists} selectedListId={selectedList?.id} />
     </div>
   )

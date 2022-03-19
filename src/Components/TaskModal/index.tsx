@@ -1,12 +1,13 @@
-import { FunctionComponent, memo, useEffect, useCallback } from 'react'
+import { FunctionComponent, memo, useEffect, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import TaskModalModel from '../../Models/TaskModalModel'
-import { GeneralUtils } from '../../Utils/GeneralUtils'
 import { setSelectedTask } from '../../Store/Actions/ListActions'
+import { GeneralUtils } from '../../Utils/GeneralUtils'
 import { useReduxDispatch } from '../../Utils/ReduxHooks'
 
 import EditField from '../Shared/EditField'
+import EditButton from '../EditButton'
 
 import './TaskModal.scss'
 
@@ -14,10 +15,12 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
   ({ task, list, selectedTask, getTaskAction }) => {
     const navigate = useNavigate()
     const dispatch = useReduxDispatch()
-    const _setSelectedTask = useCallback(
-      selected => dispatch(setSelectedTask(selected)),
-      [dispatch]
-    )
+    const _setSelectedTask = useCallback(s => dispatch(setSelectedTask(s)), [dispatch])
+    const [editTask, setEditTask] = useState(false)
+
+    const handleChangeEditTask = () => {
+      setEditTask(!editTask)
+    }
 
     const handleCloseModal = () => {
       if (!list) return
@@ -29,6 +32,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       if (task) {
         getTaskAction(task)
       }
+      setEditTask(false)
     }, [getTaskAction, task])
 
     return (
@@ -39,7 +43,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
           </button>
         </div>
         <hr />
-        <EditField text={selectedTask.name} shouldEdit={false} />
+        <EditField text={selectedTask.name} shouldEdit={editTask} />
         <hr />
         <div id="task-item-date">
           <h6>Created at: {GeneralUtils.getFromNow(selectedTask.created_at)}</h6>
@@ -47,7 +51,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
         </div>
         <hr />
         <div id="task-edit-container">
-          <button> edit button</button>
+          <EditButton text activeState={editTask} buttonAction={handleChangeEditTask} />
         </div>
       </div>
     )

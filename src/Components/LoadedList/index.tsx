@@ -1,19 +1,25 @@
-import { FunctionComponent, memo, useEffect } from 'react'
+import { FunctionComponent, memo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import LoadedListModel from '../../Models/LoadedListModel'
 import ListItemTile from '../ListItemTile'
+import EditButton from '../EditButton'
 
 import './LoadedList.scss'
 
 const LoadedList: FunctionComponent<LoadedListModel> = memo(
   ({ selectedList, id, getListAction, selectedTask }) => {
     const navigate = useNavigate()
+    const [editTitle, setEditTitle] = useState(false)
 
     const handleNavigateToList = (id: string) => {
       if (!selectedList?.id) return
 
       navigate(`../list/${selectedList.id}/${id}`)
+    }
+
+    const handleChangeEditState = () => {
+      setEditTitle(!editTitle)
     }
 
     const handleUpdateTaskStatus = (id: string, status: boolean) => {
@@ -24,6 +30,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
       if (id) {
         getListAction(id)
       }
+      setEditTitle(false)
     }, [getListAction, id])
 
     return (
@@ -31,7 +38,15 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
         {selectedList?.id ? (
           <div>
             <div id="list-header">
-              <h2>{selectedList.name}</h2>
+              <div id="header-container">
+                <h2>{selectedList.name}</h2>
+
+                <EditButton
+                  text={false}
+                  activeState={editTitle}
+                  buttonAction={handleChangeEditState}
+                />
+              </div>
               <hr />
             </div>
             <div id="list-children">
