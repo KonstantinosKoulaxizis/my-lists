@@ -6,7 +6,6 @@ export const GeneralUtils = (() => {
       return moment(time).fromNow()
     },
     updateInArray: (arrToCheck: any[], newObj: any, keyToCheck: string) => {
-    console.log("🚀 ~ file: GeneralUtils.ts ~ line 9 ~ GeneralUtils ~ arrToCheck", arrToCheck)
       const arrCoppy = [...arrToCheck]
       const found = arrToCheck.findIndex(el => el?.[keyToCheck] === newObj?.[keyToCheck])
 
