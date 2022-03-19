@@ -14,7 +14,9 @@ const ListTile: FunctionComponent<ListTileModel> = ({
   navigationAction
 }) => {
   return (
-    <div className={`list-tile${isActive ? ' active-item-status' :''}`} onClick={() => navigationAction(id)}>
+    <div
+      className={`list-tile${isActive ? ' active-item-status' : ''}`}
+      onClick={() => navigationAction(id)}>
       <h4>{name}</h4>
       <hr />
       <div className="list-tile-date">

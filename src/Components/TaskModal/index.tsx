@@ -10,6 +10,7 @@ import TaskModalModel from '../../Models/TaskModalModel'
 
 import EditField from '../Shared/EditField'
 import EditButton from '../EditButton'
+import DeleteButton from '../DeleteButton'
 
 import './TaskModal.scss'
 
@@ -75,6 +76,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
         <hr />
         <div id="task-edit-container">
           <EditButton text activeState={editTask} buttonAction={handleChangeEditTask} />
+          <DeleteButton text buttonAction={() => console.log('test')} />
         </div>
       </div>
     )

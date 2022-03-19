@@ -11,6 +11,7 @@ import ListTileModel from '../../Models/ListTileModel'
 import ListItemTile from '../ListItemTile'
 import EditButton from '../EditButton'
 import EditField from '../Shared/EditField'
+import DeleteButton from '../../Components/DeleteButton'
 import { COMPLETED_KEY } from '../../Consts/AppConsts'
 
 import './LoadedList.scss'
@@ -85,6 +86,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
                   activeState={editTitle}
                   buttonAction={handleChangeEditState}
                 />
+                <DeleteButton text={false} buttonAction={() => console.log('test')} />
               </div>
               <hr />
             </div>
