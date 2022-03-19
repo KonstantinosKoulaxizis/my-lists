@@ -1,4 +1,4 @@
-interface SelectedListModel {
+interface SelectedTaskModel {
   id: string // TODO CHANGE IT WITH _id
   name: string
   created_at: string
@@ -6,4 +6,4 @@ interface SelectedListModel {
   completed: boolean
 }
 
-export default SelectedListModel
+export default SelectedTaskModel

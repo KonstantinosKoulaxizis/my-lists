@@ -1,10 +1,12 @@
 import { FunctionComponent, memo, useEffect, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import TaskModalModel from '../../Models/TaskModalModel'
-import { setSelectedTask } from '../../Store/Actions/ListActions'
+import { NAME_KEY } from '../../Consts/AppConsts'
+import { setSelectedTask, setSelectedList } from '../../Store/Actions/ListActions'
 import { GeneralUtils } from '../../Utils/GeneralUtils'
+import { ListRequests } from '../../Utils/ListRequests'
 import { useReduxDispatch } from '../../Utils/ReduxHooks'
+import TaskModalModel from '../../Models/TaskModalModel'
 
 import EditField from '../Shared/EditField'
 import EditButton from '../EditButton'
@@ -12,20 +14,30 @@ import EditButton from '../EditButton'
 import './TaskModal.scss'
 
 const TaskModal: FunctionComponent<TaskModalModel> = memo(
-  ({ task, list, selectedTask, getTaskAction }) => {
+  ({ task, list, selectedTask, selectedList, getTaskAction }) => {
     const navigate = useNavigate()
     const dispatch = useReduxDispatch()
     const _setSelectedTask = useCallback(s => dispatch(setSelectedTask(s)), [dispatch])
+    const _setSelectedList = useCallback(s => dispatch(setSelectedList(s)), [dispatch])
     const [editTask, setEditTask] = useState(false)
 
     const handleChangeEditTask = () => {
       setEditTask(!editTask)
     }
 
-    const handleUpdateTask = (newName: string) => {
-      if (!editTask || !newName || newName === selectedTask.name) return
+    const handleUpdateTask = async (newName: string) => {
+      if (!task || !list || !editTask || !newName || newName === selectedTask.name) return
+      const updatedTask = await ListRequests.updateTask(list!, task!, newName, NAME_KEY)
 
-      console.log(newName)
+      if (!!updatedTask?.data) {
+        const updatedTasksArray = GeneralUtils.updateInArray(
+          selectedList.items,
+          updatedTask.data,
+          'id'
+        )
+        selectedList.items = updatedTasksArray
+        _setSelectedList(selectedList)
+      }
     }
 
     const handleCloseModal = () => {

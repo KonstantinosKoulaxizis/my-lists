@@ -1,36 +1,63 @@
-import { FunctionComponent, memo, useEffect, useState } from 'react'
+import { FunctionComponent, memo, useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { ListRequests } from '../../Utils/ListRequests'
+import { GeneralUtils } from '../../Utils/GeneralUtils'
+import { useReduxSelector, useReduxDispatch } from '../../Utils/ReduxHooks'
+import { setUrerLists, setSelectedList } from '../../Store/Actions/ListActions'
+
 import LoadedListModel from '../../Models/LoadedListModel'
+import ListTileModel from '../../Models/ListTileModel'
 import ListItemTile from '../ListItemTile'
 import EditButton from '../EditButton'
 import EditField from '../Shared/EditField'
+import { COMPLETED_KEY } from '../../Consts/AppConsts'
 
 import './LoadedList.scss'
 
 const LoadedList: FunctionComponent<LoadedListModel> = memo(
   ({ selectedList, id, getListAction, selectedTask }) => {
     const navigate = useNavigate()
+    const dispatch = useReduxDispatch()
+    const _setUrerLists = useCallback(value => dispatch(setUrerLists(value)), [dispatch])
+    const _setSelectedList = useCallback(s => dispatch(setSelectedList(s)), [dispatch])
+    const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
     const [editTitle, setEditTitle] = useState(false)
 
     const handleChangeEditState = () => {
       setEditTitle(!editTitle)
     }
 
-    const handleUpdateListName = (newName: string) => {
+    const handleUpdateListName = async (newName: string) => {
       if (!editTitle || !newName || newName === selectedList.name) return
+      const updatedList = await ListRequests.updateList(selectedList.id, newName)
 
-      console.log(newName)
+      if (!!updatedList?.data) {
+        const updatedListsArray = GeneralUtils.updateInArray(userLists, updatedList.data, 'id')
+        selectedList.name = newName
+
+        _setUrerLists(updatedListsArray)
+      }
     }
 
-    const handleNavigateToList = (id: string) => {
+    const handleNavigateToTask = (id: string) => {
       if (!selectedList?.id) return
 
       navigate(`../list/${selectedList.id}/${id}`)
     }
 
-    const handleUpdateTaskStatus = (id: string, status: boolean) => {
-      console.log('id: ', id, 'status: ', status)
+    const handleUpdateTaskStatus = async (id: string, status: boolean) => {
+      const updatedTask = await ListRequests.updateTask(selectedList.id, id, status, COMPLETED_KEY)
+      if (updatedTask?.data) {
+        const updatedTasksArray = GeneralUtils.updateInArray(
+          selectedList.items,
+          updatedTask.data,
+          'id'
+        )
+
+        selectedList.items = updatedTasksArray
+        _setSelectedList(selectedList)
+      }
     }
 
     useEffect(() => {
@@ -69,7 +96,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
                       key={item.id}
                       id={item.id}
                       name={item.name}
-                      navigationAction={handleNavigateToList}
+                      navigationAction={handleNavigateToTask}
                       changeStatusAction={handleUpdateTaskStatus}
                       completed={item.completed}
                       isActive={item.id === selectedTask?.id}

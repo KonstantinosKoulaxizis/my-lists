@@ -1,14 +1,19 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useReduxDispatch } from '../../Utils/ReduxHooks'
+import { setSelectedTask } from '../../Store/Actions/ListActions'
 import UserListsModel from '../../Models/UserListsModel'
 
 import ListTile from '../ListTile'
 
 const UserLists: FunctionComponent<UserListsModel> = ({ userLists, selectedListId }) => {
   const navigate = useNavigate()
+  const dispatch = useReduxDispatch()
+  const _setSelectedTask = useCallback(selected => dispatch(setSelectedTask(selected)), [dispatch])
 
   const handleNavigateToList = (id: string) => {
+    _setSelectedTask({})
     navigate(`../list/${id}`)
   }
 
