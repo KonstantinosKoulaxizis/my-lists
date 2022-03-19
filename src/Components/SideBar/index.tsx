@@ -27,7 +27,7 @@ const SideBar = () => {
 
   return (
     <div id="side-bar-container">
-      <div id="buttons-container">
+      <div id="add-list-btn-container">
         <CreateNewButton />
       </div>
       <UserLists userLists={userLists} selectedListId={selectedList?.id} />

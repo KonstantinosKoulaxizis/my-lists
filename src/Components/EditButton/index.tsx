@@ -13,7 +13,7 @@ const EditButton: FunctionComponent<EditButtonModel> = ({ text, activeState, but
       }`}
       onClick={buttonAction}>
       <span>{activeState ? <FaWindowClose /> : <FaEdit />}</span>
-      {!!text && <span className="state-button-text">{activeState ? 'Close' : 'Edit task'}</span>}
+      {!!text && <span>{activeState ? 'Close' : 'Edit task'}</span>}
     </button>
   )
 }
