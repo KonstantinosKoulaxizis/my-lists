@@ -15,15 +15,6 @@
   }
 }
 
-#mobile-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px 0;
-  opacity: 0;
-}
-
 #list-view {
   height: calc(100vh - 70px);
   width: calc(100vw - 300px);
@@ -53,10 +44,6 @@
 @media only screen and (max-width: 700px) {
   #side-bar {
     left: -300px !important;
-  }
-
-  #mobile-footer {
-    opacity: 1 !important;
   }
 
   #list-view {

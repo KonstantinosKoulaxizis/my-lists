@@ -10,7 +10,6 @@ import { ListRequests } from '../../Utils/ListRequests'
 import LoadedList from '../../Components/LoadedList'
 import TaskModal from '../../Components/TaskModal'
 import SideBar from '../../Components/SideBar'
-import BottomBar from './BottomBar'
 
 import './List.scss'
 
@@ -74,9 +73,6 @@ const List = () => {
             getTaskAction={handleSelectTask}
           />
         </div>
-      </div>
-      <div id="mobile-footer">
-        <BottomBar />
       </div>
     </>
   )

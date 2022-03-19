@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { FaEdit, FaWindowClose } from 'react-icons/fa'
+
 import EditButtonModel from '../../Models/EditButtonModel'
 
 import './EditButton.scss'
