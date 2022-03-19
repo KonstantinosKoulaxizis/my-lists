@@ -1,0 +1,50 @@
+#task-modal-content {
+  padding: 10px;
+
+  #modal-back-container {
+    display: flex;
+  }
+  #modal-back-button {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    background-color: #e64d5a;
+    font-size: 17px;
+    color: #f0f0f0;
+    border: 0px;
+  }
+
+  #modal-back-button:hover {
+    background-color: #c0444ede;
+  }
+
+  #task-edit-container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #task-item-date {
+    color: #757373;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    h6 {
+      margin: 4px 0;
+      display: list-item;
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #modal-back-container {
+    justify-content: flex-end;
+  }
+
+  #task-edit-container {
+    justify-content: center !important;
+  }
+}

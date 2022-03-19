@@ -2,6 +2,8 @@ import { FunctionComponent, memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import TaskModalModel from '../../Models/TaskModalModel'
+import { GeneralUtils } from '../../Utils/GeneralUtils'
+import EditField from '../Shared/EditField'
 
 import './TaskModal.scss'
 
@@ -20,10 +22,23 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       }
     }, [getTaskAction, task])
     return (
-      <div>
-        <button onClick={handleCloseModal}>back</button>
-        <h2>TaskModal</h2>
-        <p>{selectedTask.name}</p>
+      <div id="task-modal-content">
+        <div id="modal-back-container">
+          <button id="modal-back-button" onClick={handleCloseModal}>
+            x
+          </button>
+        </div>
+        <hr />
+        <EditField text={selectedTask.name} shouldEdit={true} />
+        <hr />
+        <div id="task-item-date">
+          <h6>Created at: {GeneralUtils.getFromNow(selectedTask.created_at)}</h6>
+          <h6>last update: {GeneralUtils.getFromNow(selectedTask.updated_at)}</h6>
+        </div>
+        <hr />
+        <div id="task-edit-container">
+          <button> edit button</button>
+        </div>
       </div>
     )
   }

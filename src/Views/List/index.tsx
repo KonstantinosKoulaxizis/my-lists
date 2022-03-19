@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useReduxSelector, useReduxDispatch } from '../../Utils/ReduxHooks'
-import ListTileModel from '../../Models/ListTileModel'
 import SelectedListModel from '../../Models/SelectedListModel'
 import SelectedTaskModel from '../../Models/SelectedTaskModel'
 import { setSelectedList, setSelectedTask } from '../../Store/Actions/ListActions'
@@ -20,7 +19,6 @@ const List = () => {
   const dispatch = useReduxDispatch()
   const _setSelectedList = useCallback(selected => dispatch(setSelectedList(selected)), [dispatch])
   const _setSelectedTask = useCallback(selected => dispatch(setSelectedTask(selected)), [dispatch])
-  const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
   const selectedList: SelectedListModel = useReduxSelector(state => state.lists.selectedList)
   const selectedTask: SelectedTaskModel = useReduxSelector(state => state.lists.selectedTask)
 
@@ -42,7 +40,9 @@ const List = () => {
     if (!task || task === selectedTask?.id?.toString()) {
       return
     }
-    const found = selectedList?.items.find(t => t.id.toString() === taskId)
+    const found = selectedList?.items?.length
+      ? selectedList.items.find(t => t.id.toString() === taskId)
+      : false
 
     if (found) {
       _setSelectedTask(found)

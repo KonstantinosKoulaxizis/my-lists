@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react'
 
 import ListItemModel from '../../Models/ListItemModel'
-// import { GeneralUtils } from '../../Utils/GeneralUtils'
 
 import './ListItemTile.scss'
 
@@ -27,11 +26,6 @@ const ListItemTile: FunctionComponent<ListItemModel> = ({
             />
           </div>
         </div>
-        {/* <hr />
-        <div className="list-item-date">
-          <h6>Created at: {GeneralUtils.getFromNow(created_at)}</h6>
-          <h6>last update: {GeneralUtils.getFromNow(updated_at)}</h6>
-        </div> */}
       </div>
     </div>
   )
