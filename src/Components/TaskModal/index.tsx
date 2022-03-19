@@ -43,7 +43,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
           </button>
         </div>
         <hr />
-        <EditField text={selectedTask.name} shouldEdit={editTask} />
+        <EditField text={selectedTask.name} shouldEdit={editTask} largeFonts={false} />
         <hr />
         <div id="task-item-date">
           <h6>Created at: {GeneralUtils.getFromNow(selectedTask.created_at)}</h6>

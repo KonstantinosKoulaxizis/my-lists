@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import LoadedListModel from '../../Models/LoadedListModel'
 import ListItemTile from '../ListItemTile'
 import EditButton from '../EditButton'
+import EditField from '../Shared/EditField'
 
 import './LoadedList.scss'
 
@@ -39,7 +40,8 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
           <div>
             <div id="list-header">
               <div id="header-container">
-                <h2>{selectedList.name}</h2>
+                <EditField text={selectedList.name} shouldEdit={editTitle} largeFonts />
+                {/* <h2>{selectedList.name}</h2> */}
 
                 <EditButton
                   text={false}
