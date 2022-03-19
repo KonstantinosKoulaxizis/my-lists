@@ -7,7 +7,7 @@ import ListItemTile from '../ListItemTile'
 import './LoadedList.scss'
 
 const LoadedList: FunctionComponent<LoadedListModel> = memo(
-  ({ selectedList, id, getListAction }) => {
+  ({ selectedList, id, getListAction, selectedTask }) => {
     const navigate = useNavigate()
 
     const handleNavigateToList = (id: string) => {
@@ -45,6 +45,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
                       navigationAction={handleNavigateToList}
                       changeStatusAction={handleUpdateTaskStatus}
                       completed={item.completed}
+                      isActive={item.id === selectedTask?.id}
                     />
                   ))}
                 </>

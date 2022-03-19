@@ -7,12 +7,13 @@ import './ListItemTile.scss'
 const ListItemTile: FunctionComponent<ListItemModel> = ({
   id,
   name,
+  isActive,
   navigationAction,
   changeStatusAction,
   completed
 }) => {
   return (
-    <div className="list-item-tile">
+    <div className={`list-item-tile${isActive ? ' active-item-status' : ''}`}>
       <div>
         <div className="list-item-task">
           <h4 onClick={() => navigationAction(id)}>{name}</h4>

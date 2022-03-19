@@ -58,7 +58,12 @@ const List = () => {
         </div>
 
         <div id="list-view">
-          <LoadedList selectedList={selectedList} id={id} getListAction={handleGetList} />
+          <LoadedList
+            selectedList={selectedList}
+            selectedTask={selectedTask}
+            id={id}
+            getListAction={handleGetList}
+          />
         </div>
 
         <div id="task-modal" className={!!task ? 'active-task-modal' : 'hidden-task-modal'}>
