@@ -22,6 +22,12 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       setEditTask(!editTask)
     }
 
+    const handleUpdateTask = (newName: string) => {
+      if (!editTask || !newName || newName === selectedTask.name) return
+
+      console.log(newName)
+    }
+
     const handleCloseModal = () => {
       if (!list) return
       _setSelectedTask({})
@@ -43,7 +49,12 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
           </button>
         </div>
         <hr />
-        <EditField text={selectedTask.name} shouldEdit={editTask} largeFonts={false} />
+        <EditField
+          text={selectedTask.name}
+          shouldEdit={editTask}
+          largeFonts={false}
+          updateAction={handleUpdateTask}
+        />
         <hr />
         <div id="task-item-date">
           <h6>Created at: {GeneralUtils.getFromNow(selectedTask.created_at)}</h6>

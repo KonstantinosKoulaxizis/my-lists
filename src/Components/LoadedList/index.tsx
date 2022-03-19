@@ -13,14 +13,20 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
     const navigate = useNavigate()
     const [editTitle, setEditTitle] = useState(false)
 
+    const handleChangeEditState = () => {
+      setEditTitle(!editTitle)
+    }
+
+    const handleUpdateListName = (newName: string) => {
+      if (!editTitle || !newName || newName === selectedList.name) return
+
+      console.log(newName)
+    }
+
     const handleNavigateToList = (id: string) => {
       if (!selectedList?.id) return
 
       navigate(`../list/${selectedList.id}/${id}`)
-    }
-
-    const handleChangeEditState = () => {
-      setEditTitle(!editTitle)
     }
 
     const handleUpdateTaskStatus = (id: string, status: boolean) => {
@@ -40,8 +46,12 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
           <div>
             <div id="list-header">
               <div id="header-container">
-                <EditField text={selectedList.name} shouldEdit={editTitle} largeFonts />
-                {/* <h2>{selectedList.name}</h2> */}
+                <EditField
+                  text={selectedList.name}
+                  shouldEdit={editTitle}
+                  largeFonts
+                  updateAction={handleUpdateListName}
+                />
 
                 <EditButton
                   text={false}
