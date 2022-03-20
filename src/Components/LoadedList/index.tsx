@@ -22,6 +22,12 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
       setEditTitle(!editTitle)
     }
 
+    const handleNavigateToTask = (id: string) => {
+      if (!selectedList?.id) return
+
+      navigate(`../list/${selectedList.id}/${id}`)
+    }
+
     const handleUpdateListName = async (newName: string) => {
       if (!editTitle || !newName || newName === selectedList.name) return
       const updatedList = await ListRequests.updateList(selectedList.id, newName)
@@ -31,18 +37,20 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
       }
     }
 
-    const handleNavigateToTask = (id: string) => {
-      if (!selectedList?.id) return
-
-      navigate(`../list/${selectedList.id}/${id}`)
-    }
-
     const handleUpdateTaskStatus = async (id: string, status: boolean) => {
       const updatedTask = await ListRequests.updateTask(selectedList.id, id, status, COMPLETED_KEY)
 
       if (!!updatedTask?.data) {
         ReduxUpdateUtils.updateListTasks(updatedTask.data)
       }
+    }
+
+    const handleDeleteList = async () => {
+      const listId = selectedList.id
+      
+      await ListRequests.deleteList(listId)
+
+      ReduxUpdateUtils.removeList(listId)
     }
 
     useEffect(() => {
@@ -70,7 +78,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
                   activeState={editTitle}
                   buttonAction={handleChangeEditState}
                 />
-                <DeleteButton text={false} buttonAction={() => console.log('test')} />
+                <DeleteButton text={false} buttonAction={handleDeleteList} />
               </div>
               <hr />
             </div>

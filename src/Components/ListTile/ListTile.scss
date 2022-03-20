@@ -4,9 +4,9 @@
   margin: 5px;
   border: 1px solid #000 !important;
   border-radius: 8px;
+  cursor: pointer;
 
   h4 {
-    cursor: pointer;
     margin: 0;
     padding: 20px;
   }
@@ -23,7 +23,6 @@
       display: list-item;
       list-style-type: disc;
       list-style-position: inside;
-      cursor: default;
     }
   }
 }

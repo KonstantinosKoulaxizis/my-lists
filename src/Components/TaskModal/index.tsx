@@ -26,6 +26,12 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       setEditTask(!editTask)
     }
 
+    const handleCloseModal = () => {
+      if (!list) return
+      _setSelectedTask({})
+      navigate(`../list/${list}`)
+    }
+
     const handleUpdateTask = async (newName: string) => {
       if (!task || !list || !editTask || !newName || newName === selectedTask.name) return
       const updatedTask = await ListRequests.updateTask(list!, task!, newName, NAME_KEY)
@@ -35,10 +41,13 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       }
     }
 
-    const handleCloseModal = () => {
-      if (!list) return
-      _setSelectedTask({})
-      navigate(`../list/${list}`)
+    const handleDeleteTask = async () => {
+      if (!task || !list) return
+
+      await ListRequests.deleteTask(list!, task!)
+
+      ReduxUpdateUtils.removeList(task)
+      handleCloseModal()
     }
 
     useEffect(() => {
@@ -70,7 +79,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
         <hr />
         <div id="task-edit-container">
           <EditButton text activeState={editTask} buttonAction={handleChangeEditTask} />
-          <DeleteButton text buttonAction={() => console.log('test')} />
+          <DeleteButton text buttonAction={handleDeleteTask} />
         </div>
       </div>
     )
