@@ -1,13 +1,10 @@
-import { FunctionComponent, memo, useEffect, useState, useCallback } from 'react'
+import { FunctionComponent, memo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { ListRequests } from '../../Utils/ListRequests'
-import { GeneralUtils } from '../../Utils/GeneralUtils'
-import { useReduxSelector, useReduxDispatch } from '../../Utils/ReduxHooks'
-import { setUrerLists, setSelectedList } from '../../Store/Actions/ListActions'
+import { ReduxUpdateUtils } from '../../Utils/ReduxUpdateUtils'
 
 import LoadedListModel from '../../Models/LoadedListModel'
-import ListTileModel from '../../Models/ListTileModel'
 import ListItemTile from '../ListItemTile'
 import EditButton from '../EditButton'
 import EditField from '../Shared/EditField'
@@ -19,10 +16,6 @@ import './LoadedList.scss'
 const LoadedList: FunctionComponent<LoadedListModel> = memo(
   ({ selectedList, id, getListAction, selectedTask }) => {
     const navigate = useNavigate()
-    const dispatch = useReduxDispatch()
-    const _setUrerLists = useCallback(value => dispatch(setUrerLists(value)), [dispatch])
-    const _setSelectedList = useCallback(s => dispatch(setSelectedList(s)), [dispatch])
-    const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
     const [editTitle, setEditTitle] = useState(false)
 
     const handleChangeEditState = () => {
@@ -34,10 +27,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
       const updatedList = await ListRequests.updateList(selectedList.id, newName)
 
       if (!!updatedList?.data) {
-        const updatedListsArray = GeneralUtils.updateInArray(userLists, updatedList.data, 'id')
-        selectedList.name = newName
-
-        _setUrerLists(updatedListsArray)
+        ReduxUpdateUtils.updateLists(updatedList.data)
       }
     }
 
@@ -49,15 +39,9 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
 
     const handleUpdateTaskStatus = async (id: string, status: boolean) => {
       const updatedTask = await ListRequests.updateTask(selectedList.id, id, status, COMPLETED_KEY)
-      if (updatedTask?.data) {
-        const updatedTasksArray = GeneralUtils.updateInArray(
-          selectedList.items,
-          updatedTask.data,
-          'id'
-        )
 
-        selectedList.items = updatedTasksArray
-        _setSelectedList(selectedList)
+      if (!!updatedTask?.data) {
+        ReduxUpdateUtils.updateListTasks(updatedTask.data)
       }
     }
 

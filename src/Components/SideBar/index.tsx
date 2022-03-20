@@ -13,7 +13,7 @@ import './SideBar.scss'
 const SideBar = () => {
   const dispatch = useReduxDispatch()
   const _setUrerLists = useCallback(value => dispatch(setUrerLists(value)), [dispatch])
-  const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userList)
+  const userLists: ListTileModel[] = useReduxSelector(state => state.lists.userLists)
   const selectedList: ListTileModel = useReduxSelector(state => state.lists.selectedList)
 
   const handleGetALlLists = useCallback(async () => {

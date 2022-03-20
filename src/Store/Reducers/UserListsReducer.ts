@@ -1,7 +1,7 @@
 import { USERS_LIST, SELECTED_LIST, SELECTED_TASK } from '../Actions/ActionTypes'
 
 const initialState = {
-  userList: [],
+  userLists: [],
   selectedList: {},
   selectedTask: {}
 }
@@ -11,7 +11,7 @@ const userListsReducer = (state = initialState, action: any) => {
     case USERS_LIST:
       return {
         ...state,
-        userList: action.payload
+        userLists: action.payload
       }
     case SELECTED_LIST:
       return {

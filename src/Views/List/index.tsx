@@ -70,7 +70,6 @@ const List = () => {
             task={task}
             list={id}
             selectedTask={selectedTask}
-            selectedList={selectedList}
             getTaskAction={handleSelectTask}
           />
         </div>

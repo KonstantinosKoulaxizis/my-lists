@@ -1,11 +1,12 @@
+import { USERS_LIST, SELECTED_LIST, SELECTED_TASK } from './ActionTypes'
+
 import ListTileModel from '../../Models/ListTileModel'
 import SelectedTaskModel from '../../Models/SelectedTaskModel'
 
-import { USERS_LIST, SELECTED_LIST, SELECTED_TASK } from './ActionTypes'
 
-export const setUrerLists = (userList: ListTileModel[]) => ({
+export const setUrerLists = (userLists: ListTileModel[]) => ({
   type: USERS_LIST,
-  payload: userList
+  payload: userLists
 })
 
 export const setSelectedList = (selected: ListTileModel) => ({

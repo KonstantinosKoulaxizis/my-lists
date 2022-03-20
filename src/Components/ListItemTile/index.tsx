@@ -12,6 +12,7 @@ const ListItemTile: FunctionComponent<ListItemModel> = memo(
       setCompletedTask(!completedTask)
       changeStatusAction(id, !completedTask)
     }
+    
     return (
       <div className={`list-item-tile${isActive ? ' active-item-status' : ''}`}>
         <div>

@@ -2,10 +2,11 @@ import { FunctionComponent, memo, useEffect, useCallback, useState } from 'react
 import { useNavigate } from 'react-router-dom'
 
 import { NAME_KEY } from '../../Consts/AppConsts'
-import { setSelectedTask, setSelectedList } from '../../Store/Actions/ListActions'
+import { setSelectedTask } from '../../Store/Actions/ListActions'
 import { GeneralUtils } from '../../Utils/GeneralUtils'
 import { ListRequests } from '../../Utils/ListRequests'
 import { useReduxDispatch } from '../../Utils/ReduxHooks'
+import { ReduxUpdateUtils } from '../../Utils/ReduxUpdateUtils'
 import TaskModalModel from '../../Models/TaskModalModel'
 
 import EditField from '../Shared/EditField'
@@ -15,11 +16,10 @@ import DeleteButton from '../DeleteButton'
 import './TaskModal.scss'
 
 const TaskModal: FunctionComponent<TaskModalModel> = memo(
-  ({ task, list, selectedTask, selectedList, getTaskAction }) => {
+  ({ task, list, selectedTask, getTaskAction }) => {
     const navigate = useNavigate()
     const dispatch = useReduxDispatch()
     const _setSelectedTask = useCallback(s => dispatch(setSelectedTask(s)), [dispatch])
-    const _setSelectedList = useCallback(s => dispatch(setSelectedList(s)), [dispatch])
     const [editTask, setEditTask] = useState(false)
 
     const handleChangeEditTask = () => {
@@ -31,13 +31,7 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       const updatedTask = await ListRequests.updateTask(list!, task!, newName, NAME_KEY)
 
       if (!!updatedTask?.data) {
-        const updatedTasksArray = GeneralUtils.updateInArray(
-          selectedList.items,
-          updatedTask.data,
-          'id'
-        )
-        selectedList.items = updatedTasksArray
-        _setSelectedList(selectedList)
+        ReduxUpdateUtils.updateListTasks(updatedTask.data)
       }
     }
 
