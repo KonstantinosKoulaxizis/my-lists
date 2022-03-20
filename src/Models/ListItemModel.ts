@@ -1,5 +1,5 @@
 interface ListItemModel {
-  id: string // TODO CHANGE IT WITH _id
+  id: string
   name: string
   isActive: boolean
   navigationAction: (_id: string) => void

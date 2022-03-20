@@ -21,8 +21,6 @@ const List = () => {
   const selectedList: SelectedListModel = useReduxSelector(state => state.lists.selectedList)
   const selectedTask: SelectedTaskModel = useReduxSelector(state => state.lists.selectedTask)
 
-  // TODO remove to string
-
   const handleGetList = async (listId: string) => {
     if (!id || id === selectedList?.id?.toString()) {
       return

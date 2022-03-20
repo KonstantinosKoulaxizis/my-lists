@@ -1,5 +1,5 @@
 interface SelectedTaskModel {
-  id: string // TODO CHANGE IT WITH _id
+  id: string
   name: string
   created_at: string
   updated_at: string
