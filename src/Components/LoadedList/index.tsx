@@ -42,7 +42,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
       const updatedTask = await ListRequests.updateTask(selectedList.id, id, status, COMPLETED_KEY)
 
       if (!!updatedTask?.data) {
-        ReduxUpdateUtils.updateListTasks(updatedTask.data)
+        ReduxUpdateUtils.updateListTask(updatedTask.data)
       }
     }
 

@@ -36,9 +36,12 @@ const TaskModal: FunctionComponent<TaskModalModel> = memo(
       if (!task || !list || !editTask || !newName || newName === selectedTask.name) return
       const updatedTask = await ListRequests.updateTask(list!, task!, newName, NAME_KEY)
 
+      handleChangeEditTask()
+
       if (!!updatedTask?.data) {
-        ReduxUpdateUtils.updateListTasks(updatedTask.data)
+        ReduxUpdateUtils.updateListTask(updatedTask.data)
       }
+      handleCloseModal()
     }
 
     const handleDeleteTask = async () => {

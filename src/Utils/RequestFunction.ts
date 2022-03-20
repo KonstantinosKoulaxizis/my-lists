@@ -1,4 +1,6 @@
 import { GeneralUtils } from './GeneralUtils'
+import { CookieUtils } from './CookieUtils'
+import { ACCESS_TOKEN } from '../Consts/AppConsts'
 
 const RequestFunction = async (path: string, method: string, body?: any, auth?: boolean) => {
   const baseUrl = process.env.REACT_APP_API_SERVER
@@ -13,7 +15,7 @@ const RequestFunction = async (path: string, method: string, body?: any, auth?: 
       'Content-Type': 'application/json'
     }
     headers = Object.assign(head, {
-      Authorization: `Bearer ${localStorage.getItem('we_do_token:')}` // TODO change with cookies
+      Authorization: `Bearer ${CookieUtils.getCookie(ACCESS_TOKEN)}`
     })
   }
   const options = !!body ? { method, headers, body } : { method, headers }

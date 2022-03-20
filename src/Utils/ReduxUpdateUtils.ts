@@ -16,7 +16,7 @@ export const ReduxUpdateUtils = (() => {
       store.dispatch(setSelectedList(updatedList))
       GeneralUtils.showNotification('List updated!', 'success')
     },
-    updateListTasks: (updatedTask: SelectedTaskModel) => {
+    updateListTask: (updatedTask: SelectedTaskModel) => {
       const selectedList = store.getState().lists?.selectedList
 
       const updatedTasks = GeneralUtils.updateInArray(selectedList?.items || [], updatedTask, 'id')
