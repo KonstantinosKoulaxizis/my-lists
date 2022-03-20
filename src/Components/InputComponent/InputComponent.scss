@@ -1,0 +1,35 @@
+.input-container {
+  text-align: left;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 26px;
+
+  svg {
+    padding: 10px;
+    min-width: 50px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .input-component {
+    display: flex;
+    width: 100%;
+    max-width: 700px;
+    input {
+      padding: 10px;
+      outline: none;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    input:focus {
+      border: 2px solid #318ed5 !important;
+      box-shadow: 1px 1px 10px 5px #318ed5b1;
+    }
+  }
+}
