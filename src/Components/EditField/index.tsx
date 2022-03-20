@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 
-import EditFieldModel from '../../../Models/EditFieldModel'
-import useDebounce from '../../../Hooks/useDebounce'
+import EditFieldModel from '../../Models/EditFieldModel'
+import useDebounce from '../../Hooks/useDebounce'
 
 import './EditField.scss'
 

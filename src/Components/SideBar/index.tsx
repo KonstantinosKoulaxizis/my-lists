@@ -4,6 +4,7 @@ import { ListRequests } from '../../Utils/ListRequests'
 import { useReduxSelector, useReduxDispatch } from '../../Utils/ReduxHooks'
 import ListTileModel from '../../Models/ListTileModel'
 import { setUrerLists } from '../../Store/Actions/ListActions'
+import { LIST_TYPE } from '../../Consts/AppConsts'
 
 import CreateNewButton from '../CreateNewButton'
 import UserLists from './UserLists'
@@ -28,7 +29,7 @@ const SideBar = () => {
   return (
     <div id="side-bar-container">
       <div id="add-list-btn-container">
-        <CreateNewButton />
+        <CreateNewButton listId={false} newType={LIST_TYPE} />
       </div>
       <UserLists userLists={userLists} selectedListId={selectedList?.id} />
     </div>

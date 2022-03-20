@@ -12,9 +12,14 @@
     h2 {
       flex: 11;
     }
-
   }
 }
+
+#create-new-container {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
 #list-children {
   margin-top: 70px;
   padding: 10px !important;

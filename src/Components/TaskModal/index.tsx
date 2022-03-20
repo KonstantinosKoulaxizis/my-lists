@@ -9,7 +9,7 @@ import { useReduxDispatch } from '../../Utils/ReduxHooks'
 import { ReduxUpdateUtils } from '../../Utils/ReduxUpdateUtils'
 import TaskModalModel from '../../Models/TaskModalModel'
 
-import EditField from '../Shared/EditField'
+import EditField from '../EditField'
 import EditButton from '../EditButton'
 import DeleteButton from '../DeleteButton'
 

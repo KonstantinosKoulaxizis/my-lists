@@ -36,6 +36,17 @@ export const ReduxUpdateUtils = (() => {
       selectedList.items = selectedList.items.filter((t: SelectedTaskModel) => t.id !== id)
       store.dispatch(setSelectedList(selectedList))
       store.dispatch(setSelectedTask({} as SelectedTaskModel))
+    },
+    addList: (list: ListTileModel) => {
+      const userLists = store.getState().lists?.userLists || []
+
+      store.dispatch(setUrerLists([list, ...userLists]))
+    },
+    addTask: (task: SelectedTaskModel) => {
+      const selectedList = store.getState().lists?.selectedList
+      selectedList.items = [task, ...selectedList.items]
+
+      store.dispatch(setSelectedList(selectedList))
     }
   }
 })()

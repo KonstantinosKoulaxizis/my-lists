@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { ListRequests } from '../../Utils/ListRequests'
 import { ReduxUpdateUtils } from '../../Utils/ReduxUpdateUtils'
-
 import LoadedListModel from '../../Models/LoadedListModel'
+import { COMPLETED_KEY, TASK_TYPE } from '../../Consts/AppConsts'
+
 import ListItemTile from '../ListItemTile'
 import EditButton from '../EditButton'
-import EditField from '../Shared/EditField'
-import DeleteButton from '../../Components/DeleteButton'
-import { COMPLETED_KEY } from '../../Consts/AppConsts'
+import EditField from '../EditField'
+import DeleteButton from '../DeleteButton'
+import CreateNewButton from '../CreateNewButton'
 
 import './LoadedList.scss'
 
@@ -47,7 +48,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
 
     const handleDeleteList = async () => {
       const listId = selectedList.id
-      
+
       await ListRequests.deleteList(listId)
 
       ReduxUpdateUtils.removeList(listId)
@@ -83,6 +84,9 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
               <hr />
             </div>
             <div id="list-children">
+              <div id="add-new-task-container">
+                <CreateNewButton listId={selectedList.id} newType={TASK_TYPE} />
+              </div>
               {selectedList?.items?.length > 0 ? (
                 <>
                   {selectedList.items.map(item => (

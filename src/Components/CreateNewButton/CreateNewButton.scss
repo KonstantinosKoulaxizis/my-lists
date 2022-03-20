@@ -1,0 +1,46 @@
+.create-new-container {
+  textarea {
+    width: 100% !important;
+    border: 2px solid #318ed5;
+    box-shadow: 1px 1px 10px 1px #318ed5b1;
+    border-radius: 4px;
+  }
+  button {
+    padding: 7px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    border: 0;
+    color: #fff !important;
+    cursor: pointer;
+    font-size: 18px;
+    width: 200px !important;
+    margin-bottom: 15px;
+  }
+  .blue-button {
+    background-color: #318ed5;
+  }
+
+  .blue-button:hover {
+    background-color: #579bce;
+  }
+
+  .red-button {
+    background-color: #e64d5a;
+  }
+
+  .red-button:hover {
+    background-color: #df6972;
+  }
+
+  .icon-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+
+    button {
+      width: 50px !important;
+    }
+  }
+}
