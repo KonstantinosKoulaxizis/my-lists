@@ -21,7 +21,7 @@ export const ReduxUpdateUtils = (() => {
       const updatedTasks = GeneralUtils.updateInArray(selectedList?.items || [], updatedTask, 'id')
 
       selectedList.items = updatedTasks
-      store.dispatch(setSelectedList(selectedList))
+      store.dispatch(setSelectedList({ ...selectedList }))
     },
     removeList: (id: string) => {
       const userLists = store.getState().lists?.userLists || []
@@ -34,7 +34,7 @@ export const ReduxUpdateUtils = (() => {
       const selectedList = store.getState().lists?.selectedList
 
       selectedList.items = selectedList.items.filter((t: SelectedTaskModel) => t.id !== id)
-      store.dispatch(setSelectedList(selectedList))
+      store.dispatch(setSelectedList({ ...selectedList }))
       store.dispatch(setSelectedTask({} as SelectedTaskModel))
     },
     addList: (list: ListTileModel) => {
@@ -46,7 +46,7 @@ export const ReduxUpdateUtils = (() => {
       const selectedList = store.getState().lists?.selectedList
       selectedList.items = [task, ...selectedList.items]
 
-      store.dispatch(setSelectedList(selectedList))
+      store.dispatch(setSelectedList({ ...selectedList }))
     }
   }
 })()

@@ -9,20 +9,24 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    padding-top: 10px;
     h2 {
       flex: 11;
     }
   }
 }
 
-#create-new-container {
-  display: flex !important;
-  justify-content: flex-end !important;
+#add-new-task-container {
+  padding: 7px !important;
 }
 
 #list-children {
   margin-top: 70px;
   padding: 10px !important;
+}
+
+.center-text {
+  text-align: center;
 }
 
 @media only screen and (max-width: 700px) {

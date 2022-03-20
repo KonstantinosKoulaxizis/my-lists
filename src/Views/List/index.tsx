@@ -52,7 +52,7 @@ const List = () => {
   return (
     <>
       <div id="main-view-container">
-        <div id="side-bar">
+        <div id="side-bar"  className={!!id ? 'hidden-side-bar' : ''}>
           <SideBar />
         </div>
 

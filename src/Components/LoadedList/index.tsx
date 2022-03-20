@@ -102,12 +102,16 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
                   ))}
                 </>
               ) : (
-                <h1>No items</h1>
+                <div className="center-text">
+                  <h1>No items</h1>
+                </div>
               )}
             </div>
           </div>
         ) : (
-          <h1>Select a list or create a new one</h1>
+          <div className="center-text">
+            <h1>Select a list or create a new one</h1>
+          </div>
         )}
       </div>
     )

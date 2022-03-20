@@ -43,7 +43,8 @@
 
 @media only screen and (max-width: 700px) {
   #side-bar {
-    left: -300px !important;
+    width: 100vw !important;
+    z-index: 100;
   }
 
   #list-view {
@@ -59,5 +60,10 @@
   #task-modal {
     border-radius: 0;
     height: calc(100vh - 100px) !important;
+  }
+
+  .hidden-side-bar {
+    left: -100vw !important;
+    z-index: 0 !important;
   }
 }
