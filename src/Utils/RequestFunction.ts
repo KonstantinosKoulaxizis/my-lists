@@ -1,4 +1,4 @@
-// import ReqquestModel from '../Models/ReqquestModel'
+import { GeneralUtils } from './GeneralUtils'
 
 const RequestFunction = async (path: string, method: string, body?: any, auth?: boolean) => {
   const baseUrl = process.env.REACT_APP_API_SERVER
@@ -23,7 +23,7 @@ const RequestFunction = async (path: string, method: string, body?: any, auth?: 
     const content = await response.json()
     return !!content && !content.error ? content : content.error
   } catch (error) {
-    console.log(error)
+    GeneralUtils.showNotification('Something went wrong!', 'danger')
   }
 }
 

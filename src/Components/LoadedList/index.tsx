@@ -52,6 +52,7 @@ const LoadedList: FunctionComponent<LoadedListModel> = memo(
       await ListRequests.deleteList(listId)
 
       ReduxUpdateUtils.removeList(listId)
+      navigate('../list')
     }
 
     useEffect(() => {

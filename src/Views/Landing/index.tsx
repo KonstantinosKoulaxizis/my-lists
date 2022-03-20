@@ -4,6 +4,7 @@ import { FaEnvelope } from 'react-icons/fa'
 
 import InputComponent from '../../Components/InputComponent'
 import PasswordInput from '../../Components/PasswordInput'
+import { GeneralUtils } from '../../Utils/GeneralUtils'
 
 import './Landing.scss'
 
@@ -25,7 +26,14 @@ function Landing() {
     setIsLogin(!isLogin)
   }
 
-  const handleBoToList = () => {
+  const handleValidate = () => {
+    if (!email?.length || !password?.length) return
+    if (isLogin) {
+      console.log('login')
+    } else {
+      console.log('sign up')
+    }
+    GeneralUtils.showNotification('Successful login!', 'success')
     navigate('../list')
   }
 
@@ -45,7 +53,7 @@ function Landing() {
           inputIcon={<FaEnvelope />}
         />
         <PasswordInput inputValue={password} inputChange={handlePassword} />
-        <button className="landing-button" onClick={handleBoToList}>
+        <button className="landing-button" onClick={handleValidate}>
           {isLogin ? 'Login' : 'Creat account'}
         </button>
       </div>

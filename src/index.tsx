@@ -2,17 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { ReactNotifications } from 'react-notifications-component'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { store } from './Store/ConfigureStore'
 
 import './index.css'
+import 'react-notifications-component/dist/theme.css'
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       <React.StrictMode>
+        <ReactNotifications />
         <App />
       </React.StrictMode>
     </Provider>
